@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './styles/MediaLibrary.css';
 import Header from './components/Header';
@@ -7,11 +7,29 @@ import StatsPanel from './components/StatsPanel';
 import SearchBar from './components/SearchBar';
 import Notice from './components/Notice';
 import MediaGrid from './components/MediaGrid';
-import mockMedia from './data/mockMedia';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import store from './Services/Store/Store';
+import { getAllMedia } from './Services/Slice/GetMediaSlice';
+import { fetchToken } from './Services/Slice/AuthSlice';
 
-function App() {
+function AppContent() {
+  const dispatch = useDispatch();
+  const { mediaList } = useSelector((state) => state.GetMedia);
+  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    dispatch(fetchToken());
+  }, []);
+
+  useEffect(() => {
+    if (user?.groups?.[0]?.id) {
+      dispatch(getAllMedia({ groupId: user.groups[0].id }));
+    }
+  }, [dispatch]);
+
   return (
-    <div className="app-root">
+    <>
       <Header />
       <main className="container">
         <div className="page-top">
@@ -24,11 +42,21 @@ function App() {
           </div>
         </div>
 
-        <StatsPanel items={mockMedia} />
+        <StatsPanel items={mediaList || []} />
         <Notice />
-        <SearchBar />
-        <MediaGrid items={mockMedia} />
+        <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+        <MediaGrid items={(mediaList || []).filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))} />
       </main>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <div className="app-root">
+      <Provider store={store}>
+        <AppContent />
+      </Provider>
     </div>
   );
 }

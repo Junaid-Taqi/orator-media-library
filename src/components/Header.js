@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
+  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
+
   return (
     <header className="ml-header">
       <div className="ml-brand">
@@ -14,8 +16,8 @@ export default function Header() {
           <FontAwesomeIcon icon={faBell} />
         </button>
         <div className="ml-user">
-          <div className="ml-user-name">Admin User</div>
-          <div className="ml-user-email">admin@orator.com</div>
+          <div className="ml-user-name">{user?.fullName}</div>
+          <div className="ml-user-email">{user?.email}</div>
         </div>
         <div className="avatar"><FontAwesomeIcon icon={faUser} /></div>
       </div>

@@ -4,17 +4,18 @@ import { faImage, faVideo, faHdd } from '@fortawesome/free-solid-svg-icons';
 
 function formatSize(bytes) {
   if (!bytes) return '0 B';
-  const units = ['B','KB','MB','GB'];
-  let i=0; let s = bytes;
-  while (s >= 1024 && i < units.length-1) { s /= 1024; i++; }
-  return `${s.toFixed( (i===0?0:1) )} ${units[i]}`;
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let i = 0; let s = bytes;
+  while (s >= 1024 && i < units.length - 1) { s /= 1024; i++; }
+  return `${s.toFixed((i === 0 ? 0 : 1))} ${units[i]}`;
 }
 
-export default function StatsPanel({items=[]}){
+export default function StatsPanel({ items = [] }) {
   const total = items.length;
-  const images = items.filter(i=>i.type==='image').length;
-  const videos = items.filter(i=>i.type==='video').length;
-  const size = items.reduce((s,i)=>s + (i.size || 0),0);
+  // API returns 'mimeType', e.g. 'image/jpeg', 'video/mp4'
+  const images = items.filter(i => i.mimeType && i.mimeType.startsWith('image')).length;
+  const videos = items.filter(i => i.mimeType && i.mimeType.startsWith('video')).length;
+  const size = items.reduce((s, i) => s + (i.size || 0), 0);
 
   return (
     <section className="stats-panel">
