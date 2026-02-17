@@ -15,12 +15,29 @@ import { fetchToken } from './Services/Slice/AuthSlice';
 function AppContent() {
   const dispatch = useDispatch();
   const { mediaList } = useSelector((state) => state.GetMedia);
+  const { token, expiresIn } = useSelector((state) => state.auth);
   const user = JSON.parse(sessionStorage.getItem("liferayUser"));
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     dispatch(fetchToken());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token && expiresIn) {
+      // Refresh token 60 seconds before it expires
+      const refreshTime = (expiresIn - 60) * 1000;
+
+      if (refreshTime > 0) {
+        const timer = setTimeout(() => {
+          console.log("Token expiring soon, refreshing...");
+          dispatch(fetchToken());
+        }, refreshTime);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [token, expiresIn, dispatch]);
 
   useEffect(() => {
     if (user?.groups?.[0]?.id) {
