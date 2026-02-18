@@ -27,7 +27,7 @@ export default function MediaCard({ item, user }) {
 
   const handleDelete = async () => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-      await dispatch(deleteMedia({ mediaId }));
+      await dispatch(deleteMedia({ mediaId: String(mediaId) }));
       // Refresh list
       if (user?.groups?.[0]?.id) {
         dispatch(getAllMedia({ groupId: user.groups[0].id }));

@@ -40,10 +40,10 @@ function AppContent() {
   }, [token, expiresIn, dispatch]);
 
   useEffect(() => {
-    if (user?.groups?.[0]?.id) {
+    if (user?.groups?.[0]?.id && token) {
       dispatch(getAllMedia({ groupId: user.groups[0].id }));
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <>
