@@ -2,14 +2,13 @@ import React, { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadMedia } from '../Services/Slice/UploadMediaSlice';
-import { getAllMedia } from '../Services/Slice/GetMediaSlice';
+import { uploadMedia } from '../Services/Slices/UploadMediaSlice';
+import { getAllMedia } from '../Services/Slices/GetMediaSlice';
 
-export default function UploadButton() {
+export default function UploadButton({ user }) {
   const dispatch = useDispatch();
   const fileInputRef = useRef(null);
   const { uploadStatus } = useSelector((state) => state.UploadMedia);
-  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
 
   const handleUploadClick = () => {
     console.log("handleUploadClick");

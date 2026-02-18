@@ -9,8 +9,8 @@ import Notice from './components/Notice';
 import MediaGrid from './components/MediaGrid';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './Services/Store/Store';
-import { getAllMedia } from './Services/Slice/GetMediaSlice';
-import { fetchToken } from './Services/Slice/AuthSlice';
+import { getAllMedia } from './Services/Slices/GetMediaSlice';
+import { fetchToken } from './Services/Slices/AuthSlice';
 
 function AppContent() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function AppContent() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <main className="container">
         <div className="page-top">
           <div className="page-left">
@@ -55,14 +55,14 @@ function AppContent() {
             <div className="page-sub">Storage for images, videos, logos, and backgrounds. Media must be used inside a Slide to be scheduled.</div>
           </div>
           <div className="page-right">
-            <UploadButton />
+            <UploadButton user={user} />
           </div>
         </div>
 
         <StatsPanel items={mediaList || []} />
         <Notice />
         <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-        <MediaGrid items={(mediaList || []).filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))} />
+        <MediaGrid user={user} items={(mediaList || []).filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))} />
       </main>
     </>
   );

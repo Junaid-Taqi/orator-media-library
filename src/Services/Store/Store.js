@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import authReducer from "../Slice/AuthSlice";
-import UploadMediaReducer from "../Slice/UploadMediaSlice";
-import GetMediaReducer from "../Slice/GetMediaSlice";
-import DeleteMediaReducer from "../Slice/DeleteMediaSlice";
-import ViewMediaReducer from "../Slice/ViewMediaSlice";
+import authReducer from "../Slices/AuthSlice";
+import UploadMediaReducer from "../Slices/UploadMediaSlice";
+import GetMediaReducer from "../Slices/GetMediaSlice";
+import DeleteMediaReducer from "../Slices/DeleteMediaSlice";
+import ViewMediaReducer from "../Slices/ViewMediaSlice";
 
 
 const rootReducer = combineReducers({

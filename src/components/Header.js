@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 
-export default function Header() {
-  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
-
+export default function Header({ user }) {
   return (
     <header className="ml-header">
       <div className="ml-brand">

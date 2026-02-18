@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faImage, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { viewMedia } from '../Services/Slice/ViewMediaSlice';
-import { deleteMedia } from '../Services/Slice/DeleteMediaSlice';
-import { getAllMedia } from '../Services/Slice/GetMediaSlice';
+import { viewMedia } from '../Services/Slices/ViewMediaSlice';
+import { deleteMedia } from '../Services/Slices/DeleteMediaSlice';
+import { getAllMedia } from '../Services/Slices/GetMediaSlice';
 
-export default function MediaCard({ item }) {
+export default function MediaCard({ item, user }) {
   const dispatch = useDispatch();
 
   // Destructure with defaults to handle API response format
   const { title, size, mimeType, uploadedDate, usedInSlidesCount, mediaId } = item;
   const isVideo = mimeType.startsWith('video');
   const thumbIcon = isVideo ? faVideo : faImage;
-  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
-
 
   const handleView = () => {
     dispatch(viewMedia({ mediaId }))
