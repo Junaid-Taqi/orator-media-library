@@ -102,6 +102,17 @@ html, body {
 .stat-label {
     color: var(--muted)
 }
+.meta-row span.label {
+    border: 0 !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+}
+.media-name {
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 .stat-value {
     display: flex;
