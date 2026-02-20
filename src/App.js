@@ -11,6 +11,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './Services/Store/Store';
 import { getAllMedia } from './Services/Slices/GetMediaSlice';
 import { fetchToken } from './Services/Slices/AuthSlice';
+import DisplayNav from "./components/DisplayNav";
 
 function AppContent() {
   const dispatch = useDispatch();
@@ -57,7 +58,8 @@ function AppContent() {
 
   return (
     <>
-      <Header user={user} />
+      {/*<Header user={user} />*/}
+      <DisplayNav user={user} />
       <main className="container-fluid mt-3">
         <div className="page-top">
           <div className="page-left">

@@ -9,7 +9,7 @@
 
 .app-root {
     min-height: 100vh;
-    background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    background: linear-gradient(135deg,#2d6d8f,#1e4d63);
     color: #e9f7fb;
 }
 

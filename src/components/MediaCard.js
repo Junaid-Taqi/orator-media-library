@@ -40,7 +40,7 @@ export default function MediaCard({ item, user }) {
   return (
     <article className="media-card">
       <div className="media-thumb">
-        <FontAwesomeIcon icon={thumbIcon} size="3x" />
+        <FontAwesomeIcon icon={thumbIcon} size="2x" />
       </div>
 
       <div className="card-overlay">
