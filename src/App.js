@@ -16,7 +16,17 @@ function AppContent() {
   const dispatch = useDispatch();
   const { mediaList } = useSelector((state) => state.GetMedia);
   const { token, expiresIn } = useSelector((state) => state.auth);
-  const user = JSON.parse(sessionStorage.getItem("liferayUser"));
+  const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
+    "userId": "32533",
+    "fullName": "admin lahore",
+    "email": "admin@lahore.com",
+    "groups": [
+      {
+        "id": "32394",
+        "name": "Municipality One"
+      }
+    ]
+  };
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -48,7 +58,7 @@ function AppContent() {
   return (
     <>
       <Header user={user} />
-      <main className="container">
+      <main className="container-fluid mt-3">
         <div className="page-top">
           <div className="page-left">
             <h1 className="page-title">Media Library</h1>
