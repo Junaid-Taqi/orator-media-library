@@ -16,7 +16,7 @@ import DisplayNav from "./components/DisplayNav";
 function AppContent() {
   const dispatch = useDispatch();
   const { mediaList } = useSelector((state) => state.GetMedia);
-  const { token, expiresIn } = useSelector((state) => state.auth);
+  const { token, expiresIn, status, error } = useSelector((state) => state.auth);
   const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
     "userId": "32533",
     "fullName": "admin lahore",
@@ -55,6 +55,22 @@ function AppContent() {
       dispatch(getAllMedia({ groupId: user.groups[0].id }));
     }
   }, [dispatch, token]);
+
+  if (status === 'idle' || status === 'loading') {
+    return (
+      <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
+        <div style={{ fontSize: '16px', fontWeight: 600 }}>Loading...</div>
+      </div>
+    );
+  }
+
+  if (status === 'failed') {
+    return (
+      <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', color: '#b91c1c' }}>
+        <div>Failed to load token{error ? `: ${error}` : ''}</div>
+      </div>
+    );
+  }
 
   return (
     <>
