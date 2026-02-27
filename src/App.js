@@ -18,16 +18,17 @@ function AppContent() {
   const { mediaList } = useSelector((state) => state.GetMedia);
   const { token, expiresIn, status, error } = useSelector((state) => state.auth);
   const user = JSON.parse(sessionStorage.getItem("liferayUser")) || {
-    "userId": "32533",
+    "userId": "24608",
     "fullName": "admin lahore",
     "email": "admin@lahore.com",
     "groups": [
       {
-        "id": "32394",
-        "name": "Municipality One"
+        "id": "24593",
+        "name": "Municipility One"
       }
     ]
   };
+  
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
