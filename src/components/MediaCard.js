@@ -15,7 +15,7 @@ export default function MediaCard({ item, user }) {
   const thumbIcon = isVideo ? faVideo : faImage;
 
   const handleView = () => {
-    dispatch(viewMedia({ mediaId }))
+    dispatch(viewMedia({ mediaId: String(mediaId) }))
       .unwrap()
       .then(result => {
         if (result.success) {
