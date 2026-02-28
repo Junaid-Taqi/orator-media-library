@@ -77,7 +77,7 @@ function AppContent() {
     <>
       {/*<Header user={user} />*/}
       <DisplayNav user={user} />
-      <main className="container-fluid mt-3">
+      <main className="container-fluid mt-3 pb-5">
         <div className="page-top">
           <div className="page-left">
             <h1 className="page-title">Media Library</h1>
