@@ -57,7 +57,8 @@ function AppContent() {
     }
   }, [dispatch, token]);
 
-  if (status === 'idle' || status === 'loading') {
+  const isBootstrappingAuth = !token && (status === 'idle' || status === 'loading');
+  if (isBootstrappingAuth) {
     return (
       <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
         <div style={{ fontSize: '16px', fontWeight: 600 }}>Loading...</div>
@@ -65,7 +66,7 @@ function AppContent() {
     );
   }
 
-  if (status === 'failed') {
+  if (!token && status === 'failed') {
     return (
       <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', color: '#b91c1c' }}>
         <div>Failed to load token{error ? `: ${error}` : ''}</div>
