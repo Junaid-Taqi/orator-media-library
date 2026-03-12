@@ -1,0 +1,17 @@
+{
+    "cityOfSpringfield": "Grad Springfield",
+    "mediaLibrary": "Medijska knjižnica",
+    "monitorSignage": "Pratite svoju mrežu digitalnih natpisa",
+    "mediaLibraryDescription": "Skladište za slike, videozapise, logotipe i pozadine. Mediji se moraju koristiti unutar slajda da bi se mogli zakazati.",
+    "uploadMedia": "Prenesi medij",
+    "TotalFiles": "Ukupno datoteka",
+    "images": "Slike",
+    "videos": "Videozapisi",
+    "TotalSize": "Ukupna veličina",
+    "mediaStorage": "Medijska knjižnica je samo skladište",
+    "FileStored": "Datoteke pohranjene ovdje ne mogu se zakazati izravno. Da biste prikazali medije na ekranima, prvo morate stvoriti slajd (na cijelom zaslonu ili predložak) i dodijeliti mu medije. Zatim dodajte slajd u bazen sadržaja i vremensku traku.",
+    "searchPlaceholder": "Ovdje pretražite medijske datoteke...",
+    "Uploaded": "Preneseno",
+    "usedIn": "Korišteno u",
+    "view": "Pogledaj"
+}

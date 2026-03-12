@@ -1,0 +1,17 @@
+{
+  "cityOfSpringfield": "City of Springfield",
+  "mediaLibrary": "Media Library",
+  "monitorSignage": "Monitor your digital signage network",
+  "mediaLibraryDescription": "Storage for images, videos, logos, and backgrounds. Media must be used inside a Slide to be scheduled.",
+    "uploadMedia": "Upload Media",
+    "TotalFiles": "Total Files",
+    "images": "Images",
+    "videos": "Videos",
+    "TotalSize": "Total Size",
+    "mediaStorage": "Media Library is Storage Only",
+    "FileStored": "Files stored here cannot be scheduled directly. To display media on screens, you must first create a Slide (Fullscreen or Template) and assign the media to it. Then add the Slide to a Content Pool and Timeline.",
+    "searchPlaceholder": "Search media files here...",
+    "Uploaded": "Uploaded",
+    "usedIn": "Used in",
+    "view": "View"
+}

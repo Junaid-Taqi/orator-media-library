@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faVideo, faHdd } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from '../Services/Localization/Localization';
+
 
 function formatSize(bytes) {
   if (!bytes) return '0 B';
@@ -11,6 +13,7 @@ function formatSize(bytes) {
 }
 
 export default function StatsPanel({ items = [] }) {
+  const { t } = useTranslation();
   const total = items.length;
   // API returns 'mimeType', e.g. 'image/jpeg', 'video/mp4'
   const images = items.filter(i => i.mimeType && i.mimeType.startsWith('image')).length;
@@ -20,19 +23,19 @@ export default function StatsPanel({ items = [] }) {
   return (
     <section className="stats-panel">
       <div className="stat-card">
-        <div className="stat-label">Total Files</div>
+        <div className="stat-label">{t('TotalFiles')}</div>
         <div className="stat-value">{total}</div>
       </div>
       <div className="stat-card">
-        <div className="stat-label">Images</div>
+        <div className="stat-label">{t('images')}</div>
         <div className="stat-value"><div className="stat-count">{images}</div><div className="stat-icon"><FontAwesomeIcon icon={faImage} /></div></div>
       </div>
       <div className="stat-card">
-        <div className="stat-label">Videos</div>
+        <div className="stat-label">{t('videos')}</div>
         <div className="stat-value"><div className="stat-count">{videos}</div><div className="stat-icon"><FontAwesomeIcon icon={faVideo} /></div></div>
       </div>
       <div className="stat-card">
-        <div className="stat-label">Total Size</div>
+        <div className="stat-label">{t('TotalSize')}</div>
         <div className="stat-value"><div className="stat-count">{formatSize(size)}</div><div className="stat-icon"><FontAwesomeIcon icon={faHdd} /></div></div>
       </div>
     </section>

@@ -15,9 +15,9 @@ export default function MediaGrid({ user, items = [] }) {
       {visibleCount < items.length && (
         <div style={{ textAlign: 'center' }}>
           <button
-            className="btn btn-outline-primary px-4 py-2 my-5"
+            className="btn btn-outline-primary px-4 py-2 my-5 text-white"
             onClick={() => setVisibleCount(prev => prev + 16)}
-            style={{ fontWeight: 500, borderRadius: '50rem' }}
+            style={{ fontWeight: 500, borderRadius: '50rem', borderColor: '#fff' }}
           >
             Load More Media
           </button>

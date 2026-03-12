@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux';
 import { viewMedia } from '../Services/Slices/ViewMediaSlice';
 import { deleteMedia } from '../Services/Slices/DeleteMediaSlice';
 import { getAllMedia } from '../Services/Slices/GetMediaSlice';
+import {  useTranslation } from '../Services/Localization/Localization';
 
 export default function MediaCard({ item, user }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   // Destructure with defaults to handle API response format
@@ -49,14 +51,14 @@ export default function MediaCard({ item, user }) {
           <div className="media-size">{Math.round(size / 1024)} KB</div>
 
           <div className="meta-details">
-            <div className="meta-row"><span className="label">Uploaded:</span><span className="value">{formattedDate}</span></div>
-            <div className="meta-row"><span className="label">Used in:</span><span className="value link">{usedInSlidesCount || 0} Slides</span></div>
+            <div className="meta-row"><span className="label">{t('Uploaded')}:</span><span className="value">{formattedDate}</span></div>
+            <div className="meta-row"><span className="label">{t('usedIn')}:</span><span className="value link">{usedInSlidesCount || 0} Slides</span></div>
           </div>
         </div>
 
         <div className="card-actions">
           <button className="btn-view" onClick={handleView}>
-            <FontAwesomeIcon icon={faEye} />&nbsp;View
+            <FontAwesomeIcon icon={faEye} />&nbsp; {t('view')}
           </button>
           <button className="btn-delete" aria-label="delete" onClick={handleDelete}><FontAwesomeIcon icon={faTrash} /></button>
         </div>

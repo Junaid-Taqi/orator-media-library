@@ -4,11 +4,13 @@ import { faUpload, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadMedia } from '../Services/Slices/UploadMediaSlice';
 import { getAllMedia } from '../Services/Slices/GetMediaSlice';
+import {  useTranslation } from '../Services/Localization/Localization';
 
 export default function UploadButton({ user }) {
   const dispatch = useDispatch();
   const fileInputRef = useRef(null);
   const { uploadStatus } = useSelector((state) => state.UploadMedia);
+  const { t } = useTranslation();
 
   const handleUploadClick = () => {
     console.log("handleUploadClick");
@@ -51,7 +53,7 @@ export default function UploadButton({ user }) {
         ) : (
           <FontAwesomeIcon icon={faUpload} />
         )}
-        <span>{uploadStatus === 'loading' ? 'Uploading...' : 'Upload Media'}</span>
+        <span>{uploadStatus === 'loading' ? t('uploading') : t('uploadMedia')}</span>
       </button>
     </>
   );

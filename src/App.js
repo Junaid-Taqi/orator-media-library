@@ -12,8 +12,10 @@ import store from './Services/Store/Store';
 import { getAllMedia } from './Services/Slices/GetMediaSlice';
 import { fetchToken } from './Services/Slices/AuthSlice';
 import DisplayNav from "./components/DisplayNav";
+import { LanguageProvider, useTranslation } from './Services/Localization/Localization';
 
 function AppContent() {
+  const { t, lang, setLanguage } = useTranslation();
   const dispatch = useDispatch();
   const { mediaList } = useSelector((state) => state.GetMedia);
   const { token, expiresIn, status, error } = useSelector((state) => state.auth);
@@ -37,9 +39,7 @@ function AppContent() {
 
   useEffect(() => {
     if (token && expiresIn) {
-      // Refresh token 60 seconds before it expires
       const refreshTime = (expiresIn - 60) * 1000;
-
       if (refreshTime > 0) {
         const timer = setTimeout(() => {
           console.log("Token expiring soon, refreshing...");
@@ -76,13 +76,12 @@ function AppContent() {
 
   return (
     <>
-      {/*<Header user={user} />*/}
       <DisplayNav user={user} />
       <main className="container-fluid mt-3 pb-5">
         <div className="page-top">
           <div className="page-left">
-            <h1 className="page-title">Media Library</h1>
-            <div className="page-sub">Storage for images, videos, logos, and backgrounds. Media must be used inside a Slide to be scheduled.</div>
+            <h1 className="page-title">{t('mediaLibrary')}</h1>
+            <div className="page-sub">{t('mediaLibraryDescription')}</div>
           </div>
           <div className="page-right">
             <UploadButton user={user} />
@@ -100,11 +99,13 @@ function AppContent() {
 
 function App() {
   return (
-    <div className="app-root">
+    <LanguageProvider> {/* ✅ Wrap everything with LanguageProvider */}
       <Provider store={store}>
+        <div className="app-root">
         <AppContent />
+        </div>
       </Provider>
-    </div>
+    </LanguageProvider>
   );
 }
 
